@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ChartDataController;
 use App\Models\CO2Records;
 use App\Models\PressureRecord;
 use App\Models\ControllerRecords;
@@ -7,6 +8,8 @@ use App\Models\TemperatureRecord;
 use App\Models\FlowControllerRecords;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
+use App\Models\Node;
+use App\Models\NodeParameter;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,19 +26,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    $pressureRecords = PressureRecord::all(); // Fetch all pressure records
-    $temperatureRecords = TemperatureRecord::all(); // Fetch all temperature records
-    $co2Records = CO2Records::all(); // Fetch all co2 records
-    $flowControllerRecords = FlowControllerRecords::all(); // Fetch all flow controller records
-    $controllerRecords = ControllerRecords::all(); // Fetch all controller records
-
-    return view('dashboard', [ 'pressureRecords' => $pressureRecords,
-                                'temperatureRecords' => $temperatureRecords,
-                                'co2Records' => $co2Records,
-                                'flowControllerRecords' => $flowControllerRecords,
-                                'controllerRecords' => $controllerRecords,]);
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [ChartDataController::class,'getData'])->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

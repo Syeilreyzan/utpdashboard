@@ -11,6 +11,7 @@
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <style>
             .chart {
                 width: 100%;
@@ -26,11 +27,12 @@
             }
         </style>
         <!-- Scripts -->
+        <script defer src="https://unpkg.com/@alpinejs/focus@3.x.x/dist/cdn.min.js"></script>
         @vite(['resources/css/app.css', 'resources/js/app.js'])
-        <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+        {{-- <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
         <script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
         <script src="https://cdn.amcharts.com/lib/5/radar.js"></script>
-        <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+        <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script> --}}
         @livewireStyles
     </head>
 
@@ -48,13 +50,14 @@
             @endif
 
             <!-- Page Content -->
-            <main>
+            <main class="bg-gray-50">
                 {{ $slot }}
             </main>
         </div>
-        @stack('scripts')
+        {{-- @stack('scripts') --}}
+        {{-- @livewireScripts --}}
         @livewireScripts
-        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        <x-livewire-alert::scripts />
+        {{-- @livewire('wire-elements-modal') --}}
+        @livewire('wire-elements-modal')
     </body>
 </html>

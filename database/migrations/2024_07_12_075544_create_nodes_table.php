@@ -11,10 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('controller_records', function (Blueprint $table) {
+        Schema::create('nodes', function (Blueprint $table) {
             $table->id();
-            $table->string('controller_type');
-            $table->boolean('controller_value')->default(0); 
+            $table->string('equipment_label');
+            $table->string('equipment_type');
+            $table->decimal('max_value',10,4);
+            $table->decimal('min_value',10,4);
+            $table->string('unit_of_measurement');
+            $table->string('csv_file_location')->nullable();
             $table->timestamps();
         });
     }
@@ -24,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('controller_records');
+        Schema::dropIfExists('nodes');
     }
 };

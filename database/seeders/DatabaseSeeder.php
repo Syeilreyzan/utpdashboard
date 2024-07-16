@@ -13,11 +13,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call([
-            PressureRecordsSeeder::class,
-            // TemperatureeRecordsSeeder::class,
-            // CO2RecordsSeeder::class,
-            // FlowControllerRecordsSeeder::class,
-            // Other seeders if you have more
+            InitSeeder::class,
         ]);
         // \App\Models\User::factory(10)->create();
 

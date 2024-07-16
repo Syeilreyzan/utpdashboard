@@ -11,11 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pressure_records', function (Blueprint $table) {
+        Schema::create('node_parameters', function (Blueprint $table) {
             $table->id();
-            $table->string('pressure_type');
-            $table->decimal('pressure_value', 8, 2);
-            $table->timestamps(); // This will add 'created_at' and 'updated_at' columns
+            $table->unsignedInteger('node_id')->constrained('nodes')->onDelete('cascade');
+            $table->dateTime('date_time')->nullable();
+            $table->decimal('current_value', 10, 4);
+            $table->timestamps();
         });
     }
 
@@ -24,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('pressure_records');
+        Schema::dropIfExists('node_parameters');
     }
 };
