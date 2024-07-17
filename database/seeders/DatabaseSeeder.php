@@ -14,6 +14,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             InitSeeder::class,
+            ToggleSeeder::class,
         ]);
         // \App\Models\User::factory(10)->create();
 

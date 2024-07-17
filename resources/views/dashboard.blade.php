@@ -5,76 +5,80 @@
         </h2>
     </x-slot>
 
-    <div class="grid grid-cols-2 items-center w-full gap-5 p-10">
-        <div class="w-[100%] flex flex-col gap-3 bg-blue-50 rounded-xl pb-5 px-4">
-            <div class="flex items-center justify-between px-6 py-3">
-                <div class="">
-                    <p class="text-xl font-bold">{{  __('CO2').' ('.$equipment_type.')'  }}</p>
-                    <p>{{ __('Current Value: ') }}{{ number_format(end($values), 0) }}&nbspCO<sub>2</sub></p>
+    <div class="p-10 flex flex-col gap-6">
+        @livewire('toggleButtons')
+
+        <div class="grid grid-cols-2 items-center w-full gap-5">
+            <div class="w-[100%] flex flex-col gap-3 bg-blue-50 rounded-xl pb-5 px-4">
+                <div class="flex items-center justify-between px-6 py-3">
+                    <div class="">
+                        <p class="text-xl font-bold">{{  __('CO2').' ('.$equipment_type.')'  }}</p>
+                        <p>{{ __('Current Value: ') }}{{ number_format(end($values), 0) }}&nbspCO<sub>2</sub></p>
+                    </div>
+                    <button
+                        onclick="Livewire.dispatch('openModal', { component: 'modal.co2Modal', arguments: { node_id: 1 } })"
+                        class="bg-blue-500 text-white rounded-lg px-4 py-2 text-sm font-semibold hover:bg-gray-200 hover:text-gray-900 cursor-pointer">
+                        {{ __('Show Table') }}
+                    </button>
                 </div>
-                <button
-                    onclick="Livewire.dispatch('openModal', { component: 'modal.co2Modal', arguments: { node_id: 1 } })"
-                    class="bg-blue-500 text-white rounded-lg px-4 py-2 text-sm font-semibold hover:bg-gray-200 hover:text-gray-900 cursor-pointer">
-                    {{ __('Show Table') }}
-                </button>
+                <canvas id="lineChart"></canvas>
             </div>
-            <canvas id="lineChart"></canvas>
-        </div>
-        <div class="w-[100%] flex flex-col gap-3 bg-purple-50 rounded-xl pb-5 px-4">
-            <div class="flex items-center justify-between px-6 py-3">
-                <div class="">
-                    <p class="text-xl font-bold">{{ __('Celcius').' ('.$equipment_type2.')' }}</p>
-                    <p>{{ __('Current Value: ') }}{{ number_format(end($values2), 0) }} &deg;C</p>
+            <div class="w-[100%] flex flex-col gap-3 bg-purple-50 rounded-xl pb-5 px-4">
+                <div class="flex items-center justify-between px-6 py-3">
+                    <div class="">
+                        <p class="text-xl font-bold">{{ __('Celcius').' ('.$equipment_type2.')' }}</p>
+                        <p>{{ __('Current Value: ') }}{{ number_format(end($values2), 0) }} &deg;C</p>
+                    </div>
+                    <button
+                        onclick="Livewire.dispatch('openModal', { component: 'modal.co2Modal', arguments: { node_id: 2 } })"
+                        class="bg-purple-500 text-white rounded-lg px-4 py-2 text-sm font-semibold hover:bg-gray-200 hover:text-gray-900 cursor-pointer">
+                        {{ __('Show Table') }}
+                    </button>
                 </div>
-                <button
-                    onclick="Livewire.dispatch('openModal', { component: 'modal.co2Modal', arguments: { node_id: 2 } })"
-                    class="bg-purple-500 text-white rounded-lg px-4 py-2 text-sm font-semibold hover:bg-gray-200 hover:text-gray-900 cursor-pointer">
-                    {{ __('Show Table') }}
-                </button>
+                <canvas id="lineChart2"></canvas>
             </div>
-            <canvas id="lineChart2"></canvas>
-        </div>
-        <div class="w-[100%] flex flex-col gap-3 bg-red-50 rounded-xl pb-5 px-4">
-            <div class="flex items-center justify-between px-6 py-3">
-                <div class="">
-                    <p class="text-xl font-bold">{{ __('Pressure').' ('.$equipment_type3.')' }}</p>
-                    <p>{{ __('Current Value: ') }}{{ number_format(end($values3), 0) }} psi</p>
+            <div class="w-[100%] flex flex-col gap-3 bg-red-50 rounded-xl pb-5 px-4">
+                <div class="flex items-center justify-between px-6 py-3">
+                    <div class="">
+                        <p class="text-xl font-bold">{{ __('Pressure').' ('.$equipment_type3.')' }}</p>
+                        <p>{{ __('Current Value: ') }}{{ number_format(end($values3), 0) }} psi</p>
+                    </div>
+                    <button
+                        onclick="Livewire.dispatch('openModal', { component: 'modal.co2Modal', arguments: { node_id: 3 } })"
+                        class="bg-red-500 text-white rounded-lg px-4 py-2 text-sm font-semibold hover:bg-gray-200 hover:text-gray-900 cursor-pointer">
+                        {{ __('Show Table') }}
+                    </button>
                 </div>
-                <button
-                    onclick="Livewire.dispatch('openModal', { component: 'modal.co2Modal', arguments: { node_id: 3 } })"
-                    class="bg-red-500 text-white rounded-lg px-4 py-2 text-sm font-semibold hover:bg-gray-200 hover:text-gray-900 cursor-pointer">
-                    {{ __('Show Table') }}
-                </button>
+                <canvas id="lineChart3"></canvas>
             </div>
-            <canvas id="lineChart3"></canvas>
-        </div>
-        <div class="w-[100%] flex flex-col gap-3 bg-red-50 rounded-xl pb-5 px-4">
-            <div class="flex items-center justify-between px-6 py-3">
-                <div class="">
-                    <p class="text-xl font-bold">{{ __('Pressure').' ('.$equipment_type4.')' }}</p>
-                    <p>{{ __('Current Value: ') }}{{ number_format(end($values4), 0) }} psi</p>
+            <div class="w-[100%] flex flex-col gap-3 bg-red-50 rounded-xl pb-5 px-4">
+                <div class="flex items-center justify-between px-6 py-3">
+                    <div class="">
+                        <p class="text-xl font-bold">{{ __('Pressure').' ('.$equipment_type4.')' }}</p>
+                        <p>{{ __('Current Value: ') }}{{ number_format(end($values4), 0) }} psi</p>
+                    </div>
+                    <button
+                        onclick="Livewire.dispatch('openModal', { component: 'modal.co2Modal', arguments: { node_id: 4 } })"
+                        class="bg-red-500 text-white rounded-lg px-4 py-2 text-sm font-semibold hover:bg-gray-200 hover:text-gray-900 cursor-pointer">
+                        {{ __('Show Table') }}
+                    </button>
                 </div>
-                <button
-                    onclick="Livewire.dispatch('openModal', { component: 'modal.co2Modal', arguments: { node_id: 4 } })"
-                    class="bg-red-500 text-white rounded-lg px-4 py-2 text-sm font-semibold hover:bg-gray-200 hover:text-gray-900 cursor-pointer">
-                    {{ __('Show Table') }}
-                </button>
+                <canvas id="lineChart4"></canvas>
             </div>
-            <canvas id="lineChart4"></canvas>
-        </div>
-        <div class="w-[100%] flex flex-col gap-3 bg-green-50 rounded-xl pb-5 px-4">
-            <div class="flex items-center justify-between px-6 py-3">
-                <div class="">
-                    <p class="text-xl font-bold">{{ __('Power of Hydrogen').' ('.$equipment_type4.')' }}</p>
-                    <p>{{ __('Current Value: ') }}{{ number_format(end($values5), 0) }} pH</p>
+            <div class="w-[100%] flex flex-col gap-3 bg-green-50 rounded-xl pb-5 px-4">
+                <div class="flex items-center justify-between px-6 py-3">
+                    <div class="">
+                        <p class="text-xl font-bold">{{ __('Power of Hydrogen').' ('.$equipment_type4.')' }}</p>
+                        <p>{{ __('Current Value: ') }}{{ number_format(end($values5), 0) }} pH</p>
+                    </div>
+                    <button
+                        onclick="Livewire.dispatch('openModal', { component: 'modal.co2Modal', arguments: { node_id: 5 } })"
+                        class="bg-green-500 text-white rounded-lg px-4 py-2 text-sm font-semibold hover:bg-gray-200 hover:text-gray-900 cursor-pointer">
+                        {{ __('Show Table') }}
+                    </button>
                 </div>
-                <button
-                    onclick="Livewire.dispatch('openModal', { component: 'modal.co2Modal', arguments: { node_id: 5 } })"
-                    class="bg-green-500 text-white rounded-lg px-4 py-2 text-sm font-semibold hover:bg-gray-200 hover:text-gray-900 cursor-pointer">
-                    {{ __('Show Table') }}
-                </button>
+                <canvas id="lineChart5"></canvas>
             </div>
-            <canvas id="lineChart5"></canvas>
         </div>
     </div>
 

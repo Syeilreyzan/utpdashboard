@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+        <title>{{ config('app.name', 'UTP') }}</title>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
@@ -29,10 +29,6 @@
         <!-- Scripts -->
         <script defer src="https://unpkg.com/@alpinejs/focus@3.x.x/dist/cdn.min.js"></script>
         @vite(['resources/css/app.css', 'resources/js/app.js'])
-        {{-- <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
-        <script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
-        <script src="https://cdn.amcharts.com/lib/5/radar.js"></script>
-        <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script> --}}
         @livewireStyles
     </head>
 
@@ -54,10 +50,7 @@
                 {{ $slot }}
             </main>
         </div>
-        {{-- @stack('scripts') --}}
-        {{-- @livewireScripts --}}
         @livewireScripts
-        {{-- @livewire('wire-elements-modal') --}}
         @livewire('wire-elements-modal')
     </body>
 </html>
